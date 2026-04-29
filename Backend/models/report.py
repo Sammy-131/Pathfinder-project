@@ -7,6 +7,6 @@ class Report(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     description = Column(String)
-    building_id = Column(Integer, ForeignKey = 'buildings.id')
+    building_id = Column(Integer, ForeignKey('buildings.id'))
     time = Column(DateTime,server_default=func.now())
     status = Column(String, default="pending")
