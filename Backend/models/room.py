@@ -6,7 +6,7 @@ class Room(Base):
 
 
     id = Column(Integer, primary_key=True)
-    building_id = Column(Integer, ForeignKey = 'buildings.id')
+    building_id = Column(Integer, ForeignKey('buildings.id'))
     room_name = Column(String)
     floor= Column(Integer, default=1)
     
