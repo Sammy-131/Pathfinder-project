@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from session import Base
+from database.session import Base
 
 class Report(Base):
     __tablename__ = 'reports'
@@ -8,6 +8,3 @@ class Report(Base):
     title = Column(String)
     description = Column(String)
 
-    def __init__(self, title, description):
-        self.title = title
-        self.description = description
