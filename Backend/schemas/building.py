@@ -22,3 +22,12 @@ class BuildingOut(BuildingBase):
 
     class Config:
         from_attributes = True
+
+
+class BuildingUpdate(BaseModel):
+    open_time: Optional[str] = None
+    close_time: Optional[str] = None
+    facilities: Optional[List[str]] = None
+        
+
+
