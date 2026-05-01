@@ -4,7 +4,7 @@ from database.session import Base
 class Report(Base):
     __tablename__ = 'reports'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
     description = Column(String)
     building_id = Column(Integer, ForeignKey('buildings.id'))
