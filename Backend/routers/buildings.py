@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import Optional
 from database.session import get_db
 from models.building import Building
-from schemas.building import BuildingCreate, BuildingOut
+from schemas.building import BuildingCreate, BuildingOut, BuildingUpdate
 from auth import verify_admin
 
 router = APIRouter(prefix="/buildings", tags=["buildings"])
