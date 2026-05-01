@@ -7,7 +7,7 @@ app = FastAPI()
 # Register routers
 app.include_router(report.router)
 app.include_router(building.router)
-app.include_router(room.router)
+
 
 # Create tables once at startup (safe place)
 init_db()
