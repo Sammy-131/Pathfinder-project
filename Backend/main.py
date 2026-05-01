@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import report, building, room
+from routers import report, building
 from init_db import init_db
 
 app = FastAPI()
