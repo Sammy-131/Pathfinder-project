@@ -11,7 +11,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # -------------------------
 ADMIN_KEY_REPORT = [
     k.strip()
-    for k in os.getenv("REPORT_ADMIN_KEYS", "").split(",")
+    for k in os.getenv("ADMIN_KEY_REPORT", "").split(",")
     if k.strip()
 ]
 
@@ -20,6 +20,6 @@ ADMIN_KEY_REPORT = [
 # -------------------------
 ADMIN_KEY_BUILDING = [
     k.strip()
-    for k in os.getenv("BUILDING_ADMIN_KEYS", "").split(",")
+    for k in os.getenv("ADMIN_KEY_BUILDING", "").split(",")
     if k.strip()
 ]
