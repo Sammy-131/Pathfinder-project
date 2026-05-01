@@ -1,14 +1,14 @@
 from fastapi import Header, HTTPException
-from config import REPORT_ADMIN_KEYS, BUILDING_ADMIN_KEYS
+from config import ADMIN_KEY_REPORT, ADMIN_KEY_BUILDING
 
 
 def verify_admin(resource: str):
     def checker(x_admin_key: str = Header(...)):
 
         if resource == "report":
-            keys = REPORT_ADMIN_KEYS
+            keys = ADMIN_KEY_REPORT
         elif resource == "building":
-            keys = BUILDING_ADMIN_KEYS
+            keys = ADMIN_KEY_BUILDING
         else:
             raise HTTPException(status_code=400, detail="Invalid resource")
 
