@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from routers import report, building, room
-from database.init_db import init_db
+from init_db import init_db
 
 app = FastAPI()
 
