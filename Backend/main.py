@@ -1,11 +1,13 @@
-import os
-from dotenv import load_dotenv
-load_dotenv()
-print(os.getenv("DATABASE_URL"))
+from fastapi import FastAPI
+from routers import report, building, room
+from database.init_db import init_db
 
+app = FastAPI()
 
+# Register routers
+app.include_router(report.router)
+app.include_router(building.router)
+app.include_router(room.router)
 
-from database.session import Base, engine
-from models import building, room, report
-
-Base.metadata.create_all(bind=engine)
+# Create tables once at startup (safe place)
+init_db()
