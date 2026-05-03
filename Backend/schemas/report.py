@@ -21,7 +21,7 @@ class ReportCreate(ReportBase):
 class ReportResponse(ReportBase):
     id: int
     status: ReportStatus
-    time: datetime
+    _time: datetime
 
     class Config:
         from_attributes = True
