@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report A Bug</title>
+    <link rel="stylesheet" href="src/report.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <h1>Report A Bug</h1>
+    </div>
+<form id="bug-form">
+    <div class="form-body">
+
+      <div class="row">
+        <div class="field">
+          <label for="fname">First Name <span class="req">*</span></label>
+          <input type="text" id="fname" placeholder="John" />
+        </div>
+        <div class="field">
+          <label for="lname">Last Name <span class="req">*</span></label>
+          <input type="text" id="lname" placeholder="Doe" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+
+      <div class="field">
+        <label for="description">Description <span class="req">*</span></label>
+        <textarea id="description" placeholder="Describe the issue in detail..."></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="room">Room Number <span class="req">*</span></label>
+          <input type="text" id="room" placeholder="e.g. 204" />
+        </div>
+        <div class="field">
+          <label for="building">Building Name <span class="req">*</span></label>
+          <input type="text" id="building" placeholder="e.g. Main Hall" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <button class="btn-submit" type="submit">Submit</button>
+    </div>
+</form>
+</div>
+
+<script>
+
+  const form = document.getElementById('bug-form');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fields = [
+      document.getElementById('fname'),
+      document.getElementById('lname'),
+      document.getElementById('email'),
+      document.getElementById('description'),
+      document.getElementById('room'),
+      document.getElementById('building'),
+    ];
+
+    let isValid = true;
+
+    fields.forEach(function(field) {
+      if (field.value.trim() === '') {
+        field.classList.add('error');
+        isValid = false;
+      } else {
+        field.classList.remove('error');
+      }
+    });
+
+    if (isValid) {
+      alert('Report submitted successfully!');
+      form.reset();
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
