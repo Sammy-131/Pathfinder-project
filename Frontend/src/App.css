@@ -1,0 +1,16 @@
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top-bar {
+    padding: 12px 20px;
+    background: white;
+    border-bottom: 1px solid white;
+}
+
+.map-area {
+    flex: 1;
+    position: relative;
+}
