@@ -17,6 +17,11 @@ export default function MapView() {
       </header>
 
     <div className="toolbar">
+      <input
+    type="text"
+    className="search-bar"
+    placeholder="🔍 Search location..."
+      />
         <button className="settings-btn" onClick={() => setShowSettings(true)}>
           ⚙ Settings
         </button>
