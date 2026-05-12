@@ -34,6 +34,23 @@
   display: flex;
   align-items: center;
   padding: 8px 16px;
+  position: relative;
+}
+.search-bar {
+  width: 300px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1.5px solid #d0d8e8;
+  font-size: 0.9rem;
+  outline: none;
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.search-bar:focus {
+  border-color: #1a2b5e;
 }
 
 .settings-btn {
