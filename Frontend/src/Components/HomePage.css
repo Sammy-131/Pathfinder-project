@@ -24,8 +24,95 @@
   height: 100vh;
   margin-left: auto;
   margin-right: 30px;
-  margin-top: 50px;
+  margin-top: 10px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.settings-btn {
+  background-color: #1a2b5e;
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.settings-btn:hover {
+  background-color: #3b6fd4;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: black;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.settings-option {
+  background-color: #f0f2f7;
+  color: #1a2b5e;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #d0d8e8;
+}
+
+.settings-option:hover {
+  background-color: #1a2b5e;
+  color: white;
 }
