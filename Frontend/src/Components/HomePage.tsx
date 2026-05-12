@@ -5,7 +5,7 @@ import './HomePage.css'
 import { Link } from 'react-router-dom'
 
 
-const CAMPUS_CENTER: [number, number] = [42.3034, -83.0660]
+const CAMPUS_CENTER: [number, number] = [42.3040, -83.0595]
 
 
 export default function MapView() {
