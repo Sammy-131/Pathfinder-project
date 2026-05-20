@@ -7,7 +7,7 @@ import WeatherOverlay from './WeatherOverlay'
 import { useWeather } from '../Hooks/useWeather'
 import './WeatherOverlay.css'
 
-const CAMPUS_CENTER: [number, number] = [42.30619513887715, -83.06264293196003]
+const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
 export default function MapView() {
   const [showSettings, setShowSettings] = useState(false)
@@ -34,7 +34,7 @@ export default function MapView() {
         <div className="map-wrapper">
           <MapContainer
             center={CAMPUS_CENTER}
-            zoom={17}
+            zoom={16}
             style={{ height: '100%', width: '100%' }}
           >
             <TileLayer
