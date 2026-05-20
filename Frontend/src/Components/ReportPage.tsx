@@ -49,6 +49,7 @@ function ReportPage() {
   }
 
   return (
+    <div className="report-page">
     <div className="wrapper">
 
       <div className="header">
@@ -96,6 +97,7 @@ function ReportPage() {
 
       </form>
 
+    </div>
     </div>
   )
 }

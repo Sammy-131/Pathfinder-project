@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   background: #f4f6f9;
+  overflow: hidden;
 }
 
 .header {
@@ -19,23 +20,13 @@
   font-weight: 700;
 }
 
-.map-wrapper {
-  width: 60%;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: 30px;
-  margin-top: 10px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
 .toolbar {
   display: flex;
   align-items: center;
   padding: 8px 16px;
   position: relative;
 }
+
 .search-bar {
   width: 300px;
   padding: 8px 16px;
@@ -69,6 +60,28 @@
 
 .settings-btn:hover {
   background-color: #3b6fd4;
+}
+
+.map-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  padding: 10px 30px 10px 0;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .modal-overlay {
