@@ -1,10 +1,12 @@
-body {
-    background-color: #a8c0e0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 48px 16px;
-  }
+.report-page {
+  background-color: #a8c0e0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;  /* ← add this */
+  padding: 48px 16px;
+  min-height: 100vh;
+}
 
   .wrapper {
     width: 100%;
