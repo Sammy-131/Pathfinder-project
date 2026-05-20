@@ -40,6 +40,7 @@ export default function MapView() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         </MapContainer>
+        <div className="overlay-number">42</div>
       </div>
       
       {showSettings && (

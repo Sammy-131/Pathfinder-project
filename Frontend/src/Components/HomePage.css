@@ -133,3 +133,17 @@
   background-color: #1a2b5e;
   color: white;
 }
+
+.overlay-number {
+  position: absolute;
+  top: 150px;
+  right: 35px;
+  z-index: 1000; 
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #d0d8e8;
+  font-size: 1.5rem;
+  font-weight: bold;
+  pointer-events: none; 
+}
