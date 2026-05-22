@@ -8,15 +8,15 @@ interface WeatherProps {
 
 const ICONS: Record<string, string> = {
   Clear:        "☀️",
-  Clouds:       "☁️",
+  Cloudy:       "☁️",
+  "Partly Cloudy": "⛅",
   Rain:         "🌧️",
   Drizzle:      "🌦️",
   Thunderstorm: "⛈️",
   Snow:         "❄️",
-  Mist:         "🌫️",
   Fog:          "🌫️",
-  Haze:         "🌫️",
-};
+  Mist:         "🌫️",
+} // Icon names didnt match the same name in the back end so i changed the names but kept the icons the same
 
 export default function WeatherOverlay({ weather, loading, error }: WeatherProps) {
   if (loading) return <div className="weather-overlay">...</div>;
