@@ -38,7 +38,7 @@ export default function MapView() {
           ⚙ Settings
         </button>
       </div>
-
+      
       <div className="map-area">
         <p style={{color: 'red'}}>{selectedBuilding ? selectedBuilding.name : 'none'}</p> {/*remove this line once you add the css for the building panel*/}
         <div className="map-wrapper">
