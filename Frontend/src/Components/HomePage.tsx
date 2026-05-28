@@ -11,11 +11,24 @@ import BuildingPanel from './Buildingpanel'
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
 
+
 export default function MapView() {
   const [showSettings, setShowSettings] = useState(false)
   const { weather, loading, error } = useWeather(60000)
   const [buildings, setBuildings] = useState<any[]>([])
-  const [selectedBuilding, setSelectedBuilding] = useState<any>(null)
+
+  /*just a placeholder building to to help me design */
+  const [selectedBuilding, setSelectedBuilding] = useState<any>({
+  id: 1,
+  name: "Centre for Engineering Innovation",
+  description: "Engineering and computer science building",
+  latitude: 42.3048,
+  longitude: -83.0654,
+  open_time: "08:00",
+  close_time: "22:00",
+  facilities: ["Labs", "Classrooms", "Study Rooms"],
+  is_open: true
+})
 
   useEffect(() => {
     fetch('http://localhost:8000/buildings/')
@@ -40,14 +53,25 @@ export default function MapView() {
       </div>
       
       <div className="map-area">
-        <p style={{color: 'red'}}>{selectedBuilding ? selectedBuilding.name : 'none'}</p> {/*remove this line once you add the css for the building panel*/}
+
+        {/* moved this here so that the building panel is a sibling of the map wrapper and also a panel slot so the map dosent fill the wraper when the panel is closed */}
+        <div className="panel-slot">
+        {selectedBuilding && (
+          <BuildingPanel
+            building={selectedBuilding}
+            onClose={() => setSelectedBuilding(null)}
+          />
+        )}
+        </div>
+      
+
         <div className="map-wrapper">
           <MapContainer
             center={CAMPUS_CENTER}
             zoom={16}
             style={{ height: '100%', width: '100%' }}
           >
-
+            
             {buildings.map(building => ( // this handles what happends whenyou click on the marker
               <Marker
                 key={building.id}
@@ -67,14 +91,6 @@ export default function MapView() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </MapContainer>
-
-            {selectedBuilding && ( //again just ask me to explain what i did here when we convene
-              <BuildingPanel
-                building={selectedBuilding}
-                onClose={() => setSelectedBuilding(null)}
-              />
-            )}
-
           <WeatherOverlay weather={weather} loading={loading} error={error} />
         </div>
       </div>
