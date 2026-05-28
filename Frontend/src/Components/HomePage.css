@@ -67,6 +67,17 @@
   display: flex;
   overflow: hidden;
   padding: 10px 30px 10px 0;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 16px;
+  min-height: 0;
+}
+
+/*keeps the space when you close the building panel*/
+.panel-slot {
+  width: 320px;
+  min-width: 320px;    
+  height: 100%;
 }
 
 .map-wrapper {
@@ -74,6 +85,8 @@
   width: 60%;
   height: 100%;
   margin-left: auto;
+  flex: 1;
+  min-height: 0;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);

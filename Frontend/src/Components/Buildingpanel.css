@@ -1,0 +1,120 @@
+.building-panel {
+  position: relative;  
+  z-index: 9999;
+
+  width: 320px;
+  min-width: 300px;
+  height: 100%;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 24px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f0f2f7;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #1a2b5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #1a2b5e;
+  color: white;
+}
+
+.building-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-right: 30px; /* avoid overlap with close btn */
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.status-badge.open {
+  background: #e6f4ea;
+  color: #2e7d32;
+}
+
+.status-badge.closed {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #f0f2f7;
+  padding-top: 14px;
+}
+
+.panel-section h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+}
+
+.panel-section p {
+  font-size: 0.92rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.facilities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.facilities-list li {
+  font-size: 0.9rem;
+  color: #333;
+  padding: 6px 10px;
+  background: #f0f2f7;
+  border-radius: 6px;
+}
