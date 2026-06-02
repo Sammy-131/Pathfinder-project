@@ -20,4 +20,11 @@ app.include_router(buildings.router)
 app.include_router(weather.router)
 
 # Create tables once at startup (safe place)
-init_db()
+@app.on_event("startup")
+async def startup_event():
+    try:
+        init_db()
+        print("Database connected successfully")
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+        print("Server starting anyway...")
