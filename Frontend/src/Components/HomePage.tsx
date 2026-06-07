@@ -18,7 +18,10 @@ export default function MapView() {
   const [buildings, setBuildings] = useState<any[]>([])
 
   /*just a placeholder building to to help me design */
-  const [selectedBuilding, setSelectedBuilding] = useState<any>({
+  const [selectedBuilding, setSelectedBuilding] = useState<any>(null)
+  
+  /*use this for the place holder just replace null with the building object*/
+  /*{
   id: 1,
   name: "Centre for Engineering Innovation",
   description: "Engineering and computer science building",
@@ -28,7 +31,7 @@ export default function MapView() {
   close_time: "22:00",
   facilities: ["Labs", "Classrooms", "Study Rooms"],
   is_open: true
-})
+}*/
 
   useEffect(() => {
     fetch('http://localhost:8000/buildings/')
