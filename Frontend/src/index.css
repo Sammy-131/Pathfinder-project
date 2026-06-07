@@ -9,3 +9,17 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
 }
+
+:root {
+  --bg: #2B0F3A; /* dark purple */
+  --panel-bg: #FFF6E0; /* cream */
+  --panel-text: #2B0F3A; /* dark purple for text on cream */
+  --text-on-bg: #F4F6F9; /* light text on dark background */
+  --retro-font: 'Press Start 2P', monospace;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-on-bg);
+}

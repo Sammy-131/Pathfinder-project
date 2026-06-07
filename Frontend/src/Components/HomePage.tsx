@@ -38,7 +38,7 @@ export default function MapView() {
   return (
     <div className="home-layout">
       <header className="header">
-        <h1 className="Project">Pathfinder</h1>
+        <h1 className="project-name">Pathfinder</h1>
       </header>
 
       <div className="toolbar">
@@ -110,6 +110,10 @@ export default function MapView() {
           </div>
         </div>
       )}
+      {/* fixed footer */}
+      <div className="footer-fixed">
+        <div className="footer-message">Thank you for using our webapp</div>
+      </div>
     </div>
   )
 }

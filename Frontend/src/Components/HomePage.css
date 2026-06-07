@@ -2,12 +2,14 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f4f6f9;
+  background: var(--bg);
+  color: var(--text-on-bg);
   overflow: hidden;
+  padding-bottom: 80px; /* reserve space so footer sits below page content */
 }
 
 .header {
-  background: black;
+  background: transparent;
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -15,7 +17,7 @@
 }
 
 .project-name {
-  color: white;
+  color: var(--text-on-bg);
   font-size: 22px;
   font-weight: 700;
 }
@@ -67,6 +69,7 @@
   display: flex;
   overflow: hidden;
   padding: 10px 30px 10px 0;
+  padding-bottom: 20px; /* ensure map content doesn't run under footer */
   flex-direction: row;
   align-items: stretch;
   gap: 16px;
@@ -90,6 +93,33 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Fixed footer with retro message */
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 10010;
+  pointer-events: none;
+}
+
+.footer-message {
+  pointer-events: auto;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  font-family: var(--retro-font);
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 .leaflet-container {

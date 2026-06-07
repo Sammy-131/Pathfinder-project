@@ -1,4 +1,4 @@
-import './BuildingPanel.css'
+import './Buildingpanel.css'
 
 interface Building {
   id: number

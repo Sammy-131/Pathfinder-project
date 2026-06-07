@@ -7,7 +7,7 @@
   height: 100%;
   overflow-y: auto;
 
-  background: white;
+  background: var(--panel-bg);
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   padding: 24px 20px;
@@ -34,28 +34,28 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  background: #f0f2f7;
+  background: rgba(0,0,0,0.04);
   border: none;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   font-size: 0.85rem;
   cursor: pointer;
-  color: #1a2b5e;
+  color: var(--panel-text);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .close-btn:hover {
-  background: #1a2b5e;
-  color: white;
+  background: rgba(0,0,0,0.12);
+  color: var(--panel-text);
 }
 
 .building-name {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--panel-text);
   margin-right: 30px; /* avoid overlap with close btn */
 }
 
@@ -84,7 +84,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border-top: 1px solid #f0f2f7;
+  border-top: 1px solid rgba(0,0,0,0.06);
   padding-top: 14px;
 }
 
@@ -98,7 +98,7 @@
 
 .panel-section p {
   font-size: 0.92rem;
-  color: #333;
+  color: rgba(0,0,0,0.85);
   line-height: 1.5;
 }
 
@@ -113,8 +113,8 @@
 
 .facilities-list li {
   font-size: 0.9rem;
-  color: #333;
+  color: rgba(0,0,0,0.85);
   padding: 6px 10px;
-  background: #f0f2f7;
+  background: rgba(0,0,0,0.03);
   border-radius: 6px;
 }
