@@ -47,8 +47,8 @@
 }
 
 .settings-btn {
-  background-color: #1a2b5e;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 0.88rem;
   font-weight: 600;
   border: none;
@@ -61,7 +61,8 @@
 }
 
 .settings-btn:hover {
-  background-color: #3b6fd4;
+  background-color: #897e95;
+  color: black;
 }
 
 .map-area {
@@ -95,33 +96,6 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Fixed footer with retro message */
-.footer-fixed {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 0;
-  z-index: 10010;
-  pointer-events: none;
-}
-
-.footer-message {
-  pointer-events: auto;
-  background: var(--panel-bg);
-  color: var(--panel-text);
-  font-family: var(--retro-font);
-  font-size: 13px;
-  padding: 10px 18px;
-  border-radius: 8px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-  text-align: center;
-  letter-spacing: 1px;
-}
-
 .leaflet-container {
   height: 100% !important;
   width: 100% !important;
@@ -146,7 +120,7 @@
 }
 
 .modal-header {
-  background-color: black;
+  background-color: #2B0F3A;
   padding: 16px 20px;
   display: flex;
   align-items: center;
@@ -176,7 +150,7 @@
 
 .settings-option {
   background-color: #f0f2f7;
-  color: #1a2b5e;
+  color: #2B0F3A;
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
@@ -186,6 +160,6 @@
 }
 
 .settings-option:hover {
-  background-color: #1a2b5e;
+  background-color: #2B0F3A;
   color: white;
 }
