@@ -8,6 +8,7 @@ import { useWeather } from '../Hooks/useWeather'
 import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
+import Header from './Header'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -41,10 +42,8 @@ export default function MapView() {
   }, [])
   return (
     <div className="home-layout">
-      <header className="header">
-        <h1 className="project-name">Pathfinder</h1>
-      </header>
-
+      <Header />
+      
       <div className="toolbar">
         <input
           type="text"

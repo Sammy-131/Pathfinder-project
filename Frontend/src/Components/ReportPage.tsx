@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ReportPage.css'
 import Footer from './Footer'
+import Header from './Header'
 
 function ReportPage() {
   const [values, setValues] = useState({
@@ -52,7 +53,6 @@ function ReportPage() {
   return (
     <div className="report-page">
     <div className="wrapper">
-
       <div className="header">
         <h1>Report A Bug</h1>
       </div>

@@ -3,7 +3,7 @@
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
-  align-items: flex-start;  /* ← add this */
+  align-items: flex-start;
   padding: 48px 16px;
   min-height: 100vh;
 }
