@@ -1,5 +1,5 @@
 .report-page {
-  background-color: #a8c0e0;
+  background: var(--bg);
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -11,18 +11,20 @@
   .wrapper {
     width: 100%;
     max-width: 600px;
-    border-radius: 10px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    background: white
   }
 
   .header {
-    background-color: #1a2b5e;
+    background: #6b21a8;
     padding: 24px 32px;
+    border-bottom: .1px solid #6b21a8;
   }
 
   .header h1 {
-    color: white;
+    color: #2B0F3A;
     font-size: 1.4rem;
     margin: 0;
   }
@@ -66,7 +68,7 @@
   }
 
   input:focus {
-    border-color: #3b6fd4;
+    border-color: #2B0F3A;
   }
 
   textarea {
@@ -82,11 +84,11 @@
   }
 
   textarea:focus {
-    border-color: #3b6fd4;
+    border-color: #2B0F3A;
   }
 
   .btn-submit {
-    background-color: #1a2b5e;
+    background-color: #2B0F3A;
     color: white;
     font-size: 0.92rem;
     font-weight: 600;
@@ -97,7 +99,9 @@
   }
 
   .btn-submit:hover {
-    background-color: #3b6fd4;
+    background-color: white;
+    color: #2B0F3A;
+    border: 1.5px solid #2B0F3A;
   }
 
   .error {
@@ -113,19 +117,19 @@
 }
 
 .btn-back {
-  background-color: #f0f2f7;
-  color: #1a2b5e;
+  background-color: #2B0F3A;
+  color: white;
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
   border-radius: 50px;
   padding: 11px 32px;
-  border: 1.5px solid #1a2b5e;
+  border: 1.5px solid #2B0F3A;
 }
 
 .btn-back:hover {
-  background-color: #1a2b5e;
-  color: white;
+  background-color: #f0f2f7;
+  color: #2B0F3A;
 }
 
 input.error,

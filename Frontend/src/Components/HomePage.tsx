@@ -7,6 +7,7 @@ import WeatherOverlay from './WeatherOverlay'
 import { useWeather } from '../Hooks/useWeather'
 import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
+import Footer from './Footer'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -113,10 +114,9 @@ export default function MapView() {
           </div>
         </div>
       )}
+      
       {/* fixed footer */}
-      <div className="footer-fixed">
-        <div className="footer-message">Thank you for using our webapp</div>
-      </div>
+      <Footer />
     </div>
   )
 }
