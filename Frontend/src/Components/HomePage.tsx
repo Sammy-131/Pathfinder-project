@@ -8,6 +8,7 @@ import { useWeather } from '../Hooks/useWeather'
 import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
+import LocationMarker, { CenterOnLocation } from './LocationMarker'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -75,7 +76,8 @@ export default function MapView() {
             zoom={16}
             style={{ height: '100%', width: '100%' }}
           >
-            
+            <LocationMarker />
+            <CenterOnLocation />
             {buildings.map(building => ( // this handles what happends whenyou click on the marker
               <Marker
                 key={building.id}

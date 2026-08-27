@@ -9,7 +9,7 @@
 }
 
 .header {
-  background: transparent;
+  background: var(--bg);
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
 }
 
 .project-name {
-  color: var(--text-on-bg);
+  color: white !important;
   font-size: 22px;
   font-weight: 700;
 }
@@ -162,4 +162,9 @@
 .settings-option:hover {
   background-color: #2B0F3A;
   color: white;
+}
+
+:root {
+  --bg: #f4f6f9;
+  --text-on-bg: #1e2433;
 }

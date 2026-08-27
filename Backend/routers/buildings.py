@@ -13,7 +13,10 @@ def get_buildings(q: Optional[str] = None, db: Session = Depends(get_db)):
     query = db.query(Building)
 
     if q:
-        query = query.filter(Building.name.ilike(f"%{q}%"))
+        query = query.filter(Building.name.ilike(f"%{q}%") | 
+                             Building.description.ilike(f"%{q}%") |
+                             Building.facilities.any(q)
+                             )
 
     return query.all()
 
