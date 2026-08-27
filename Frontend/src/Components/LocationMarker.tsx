@@ -175,10 +175,39 @@ export function CenterOnLocation() {
         boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
       }}
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#4A90E2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4A90E2">
     <path d="M12 2 L19 21 L12 17 L5 21 Z" />
   </svg>
 </button>
+  )
+}
+
+export function CenterOnSchool() {
+  const map = useMap()
+
+  const handleClick = () => {
+    map.setView([42.3048, -83.0654], 16, { animate: true })
+  }
+
+  return (
+    <button
+      className="location-btn"
+      onClick={handleClick}
+      style={{
+        position: 'absolute',
+        bottom: '76px', // stacked above the "my location" button
+        right: '24px',
+        zIndex: 1000,
+        background: 'white',
+        border: 'none',
+        padding: '8px 14px',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+      }}
+    >
+      🏫
+    </button>
   )
 }
 

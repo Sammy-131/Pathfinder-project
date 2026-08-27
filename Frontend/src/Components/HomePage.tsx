@@ -9,7 +9,7 @@ import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
 import Header from './Header'
-import LocationMarker, { CenterOnLocation } from './LocationMarker'
+import LocationMarker, { CenterOnLocation, CenterOnSchool } from './LocationMarker'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -133,6 +133,7 @@ export default function MapView() {
           >
             <LocationMarker />
             <CenterOnLocation />
+            <CenterOnSchool />
             {buildings.map(building => ( // this handles what happends whenyou click on the marker
               <Marker
                 key={building.id}
