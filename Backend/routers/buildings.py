@@ -5,6 +5,7 @@ from database.session import get_db
 from models.building import Building
 from schemas.building import BuildingCreate, BuildingOut, BuildingUpdate
 from auth import verify_admin
+from sqlalchemy import cast, String
 
 router = APIRouter(prefix="/buildings", tags=["buildings"])
 

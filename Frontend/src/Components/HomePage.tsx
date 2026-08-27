@@ -9,6 +9,7 @@ import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
 import Header from './Header'
+import LocationMarker, { CenterOnLocation } from './LocationMarker'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -18,6 +19,9 @@ export default function MapView() {
   const [showSettings, setShowSettings] = useState(false)
   const { weather, loading, error } = useWeather(60000)
   const [buildings, setBuildings] = useState<any[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [showResults, setShowResults] = useState(false)
 
   /*just a placeholder building to to help me design */
   const [selectedBuilding, setSelectedBuilding] = useState<any>(null)
@@ -40,20 +44,73 @@ export default function MapView() {
       .then(res => res.json())
       .then(data => setBuildings(data))
   }, [])
+
+  useEffect(() => {
+        if (searchQuery.trim() === '') {
+          setSearchResults([])
+          setShowResults(false)
+          return
+        }
+
+        const timeout = setTimeout(() => {
+          fetch(`http://localhost:8000/buildings/?q=${searchQuery}`)
+            .then(res => res.json())
+            .then(data => {
+              setSearchResults(data)
+              setShowResults(true)
+            })
+        }, 300) // waits 300ms after typing stops before searching
+
+        return () => clearTimeout(timeout)
+      }, [searchQuery])
+
   return (
     <div className="home-layout">
       <Header />
       
       <div className="toolbar">
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="🔍 Search location..."
-        />
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="🔍 Search buildings, rooms, facilities..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onFocus={() => searchResults.length > 0 && setShowResults(true)}
+            onBlur={() => setTimeout(() => setShowResults(false), 200)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' && searchResults.length > 0) {
+                setSelectedBuilding(searchResults[0])
+                setSearchQuery('')
+                setShowResults(false)
+              }
+            }}
+          />
+          {showResults && searchResults.length > 0 && (
+            <div className="search-dropdown">
+              {searchResults.map(building => (
+                <div
+                  key={building.id}
+                  className="search-result-item"
+                  onClick={() => {
+                    setSelectedBuilding(building)
+                    setSearchQuery('')
+                    setShowResults(false)
+                  }}
+                >
+                  <span className="result-name">{building.name}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <button className="settings-btn" onClick={() => setShowSettings(true)}>
           ⚙ Settings
         </button>
       </div>
+
+      
+      
       
       <div className="map-area">
 
@@ -74,7 +131,8 @@ export default function MapView() {
             zoom={16}
             style={{ height: '100%', width: '100%' }}
           >
-            
+            <LocationMarker />
+            <CenterOnLocation />
             {buildings.map(building => ( // this handles what happends whenyou click on the marker
               <Marker
                 key={building.id}
