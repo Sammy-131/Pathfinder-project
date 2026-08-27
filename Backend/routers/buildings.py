@@ -5,6 +5,7 @@ from database.session import get_db
 from models.building import Building
 from schemas.building import BuildingCreate, BuildingOut, BuildingUpdate
 from auth import verify_admin
+from sqlalchemy import cast, String
 
 router = APIRouter(prefix="/buildings", tags=["buildings"])
 
@@ -13,10 +14,7 @@ def get_buildings(q: Optional[str] = None, db: Session = Depends(get_db)):
     query = db.query(Building)
 
     if q:
-        query = query.filter(Building.name.ilike(f"%{q}%") | 
-                             Building.description.ilike(f"%{q}%") |
-                             Building.facilities.any(q)
-                             )
+        query = query.filter(Building.name.ilike(f"%{q}%"))
 
     return query.all()
 
