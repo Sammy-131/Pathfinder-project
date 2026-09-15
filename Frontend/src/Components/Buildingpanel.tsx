@@ -15,16 +15,21 @@ interface Building {
 interface Props {
   building: Building
   onClose: () => void
+  onGetDirections: (coords: [number, number]) => void
 }
 
 // icl just ask me to explain what i did here im not typing the explanation 
 
-export default function BuildingPanel({building, onClose }: Props){ 
+export default function BuildingPanel({building, onClose, onGetDirections }: Props){ 
     return(
         <div className="building-panel">
       <button className="close-btn" onClick={onClose}>✕</button>
+      <button className="directions-btn" onClick={() => onGetDirections([building.latitude, building.longitude])}>
+        Get Directions
+      </button>
 
       <h2 className="building-name">{building.name}</h2>
+
 
       <span className={`status-badge ${building.is_open ? 'open' : 'closed'}`}>
         {building.is_open ? 'Open' : 'Closed'}

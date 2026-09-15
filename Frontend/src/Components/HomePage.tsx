@@ -10,6 +10,8 @@ import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
 import Header from './Header'
 import LocationMarker, { CenterOnLocation, CenterOnSchool } from './LocationMarker'
+import Routing from './Routing'
+import { getLastKnownPosition } from './LocationMarker'
 
 const CAMPUS_CENTER: [number, number] = [42.3048, -83.0654]
 
@@ -22,9 +24,19 @@ export default function MapView() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [showResults, setShowResults] = useState(false)
+  const [destination, setDestination] = useState<[number, number] | null>(null)
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
 
   /*just a placeholder building to to help me design */
   const [selectedBuilding, setSelectedBuilding] = useState<any>(null)
+  const handleGetDirections = (coords: [number, number]) => {
+    const userpos = getLastKnownPosition()
+    if (!userpos) {
+      alert('Could not get your location. Make sure location access is enabled.')
+      return
+    }
+    setDestination(coords)
+  }
   
   /*use this for the place holder just replace null with the building object*/
   /*{
@@ -120,6 +132,7 @@ export default function MapView() {
           <BuildingPanel
             building={selectedBuilding}
             onClose={() => setSelectedBuilding(null)}
+            onGetDirections={handleGetDirections}
           />
         )}
         </div>
@@ -134,6 +147,13 @@ export default function MapView() {
             <LocationMarker />
             <CenterOnLocation />
             <CenterOnSchool />
+            {destination && getLastKnownPosition() && (
+              <Routing
+                from={getLastKnownPosition()!}
+                to={destination}
+                onClear={() => setDestination(null)}
+              />
+            )}
             {buildings.map(building => ( // this handles what happends whenyou click on the marker
               <Marker
                 key={building.id}
@@ -153,6 +173,14 @@ export default function MapView() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
           </MapContainer>
+          {destination && (
+            <button
+              className="clear-directions-btn"
+              onClick={() => setDestination(null)}
+            >
+              ✕ Clear Directions
+            </button>
+          )}
           <WeatherOverlay weather={weather} loading={loading} error={error} />
         </div>
       </div>

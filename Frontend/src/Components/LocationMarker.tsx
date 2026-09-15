@@ -97,6 +97,10 @@ import L from 'leaflet'
 // Shared ref so CenterOnLocation can read the latest tracked position
 export const currentPositionRef = { current: null as [number, number] | null }
 
+export function getLastKnownPosition(): [number, number] | null {
+  return currentPositionRef.current
+}
+
 export default function LocationMarker() {
   const map = useMap()
 
