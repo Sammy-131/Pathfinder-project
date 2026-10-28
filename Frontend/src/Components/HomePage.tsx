@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import './HomePage.css'
 import { Link } from 'react-router-dom'
@@ -170,11 +170,18 @@ export default function MapView() {
                 position={[building.latitude, building.longitude]}
                 eventHandlers={{
                   click: () => {
-                    console.log('building clicked:', building)
-                    setSelectedBuilding(building)}
+                    // clicking the same marker again closes the panel
+                    if (selectedBuilding?.id === building.id) {
+                      setSelectedBuilding(null)
+                      clearDirections()
+                    } else {
+                      setSelectedBuilding(building)
+                    }
+                  }
                 }}
               >
-                <Popup>{building.name}</Popup>
+                {/* shows the name on hover, offset so it sits centred above the pin */}
+                <Tooltip direction="top" offset={[-16, -14]}>{building.name}</Tooltip>
               </Marker>
             ))}
 

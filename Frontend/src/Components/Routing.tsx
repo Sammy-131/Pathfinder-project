@@ -29,6 +29,11 @@ export default function Routing({ from, to, onRoute }: Props) {
                 L.latLng(from[0], from[1]),
                 L.latLng(to[0], to[1])
             ],
+            // walking routes so it can cut through campus paths (the default server is car-only)
+            router: (L as any).Routing.osrmv1({
+                serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1',
+                profile: 'foot'
+            }),
             routeWhileDragging: false,
             show: false,
             addWaypoints: false,
