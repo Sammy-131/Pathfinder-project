@@ -1,7 +1,11 @@
 # Backend
 .env
 venv/
-__pychache__/
+__pycache__/
+*.pyc
 
 # Frontend
 node_modules/
+
+# Local dev database copy (see Backend/seed_local_db.py)
+Backend/local.db

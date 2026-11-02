@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 import httpx
 import os
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,26 +18,39 @@ WEATHER_CODES = {
     95: "Thunderstorm", 96: "Thunderstorm", 99: "Thunderstorm"
 } #using open-meteo api now which uses numbers instead of text based weather
 
+# weather barely changes minute to minute, so reuse the last result for 10 minutes
+# instead of calling open-meteo every time the frontend polls
+CACHE_SECONDS = 600
+_cache = {"data": None, "fetched_at": 0.0}
+
 @router.get("/")
 async def get_weather():
-    async with httpx.AsyncClient() as client:
-        response = await client.get(
-            "https://api.open-meteo.com/v1/forecast",
-            params={
-                "latitude": 42.3034,
-                "longitude": -83.0660,
-                "current_weather": True,
-                "temperature_unit": "celsius"
-            }
-        )
-    data = response.json()
-    current = data["current_weather"]
-    weather_code = current["weathercode"]
+    if _cache["data"] and time.time() - _cache["fetched_at"] < CACHE_SECONDS:
+        return _cache["data"]
 
-    return {
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            response = await client.get(
+                "https://api.open-meteo.com/v1/forecast",
+                params={
+                    "latitude": 42.3034,
+                    "longitude": -83.0660,
+                    "current_weather": True,
+                    "temperature_unit": "celsius"
+                }
+            )
+        response.raise_for_status()
+        current = response.json()["current_weather"]
+    except (httpx.HTTPError, KeyError):
+        if _cache["data"]:
+            return _cache["data"]  # serve the old reading rather than failing
+        raise HTTPException(status_code=503, detail="Weather service unavailable")
+
+    weather_code = current["weathercode"]
+    _cache["data"] = {
         "city": "Windsor",
         "temp": round(current["temperature"]),
         "condition": WEATHER_CODES.get(weather_code, "Clear")
     } #might add more weather data later (future updates)
-                                    
-                                
+    _cache["fetched_at"] = time.time()
+    return _cache["data"]
