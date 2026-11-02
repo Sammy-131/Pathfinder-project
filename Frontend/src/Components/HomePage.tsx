@@ -131,7 +131,10 @@ export default function MapView() {
         {selectedBuilding && (
           <BuildingPanel
             building={selectedBuilding}
-            onClose={() => setSelectedBuilding(null)}
+            onClose={() => {
+              setSelectedBuilding(null)
+              setDestination(null) // clears the route line when the panel closes
+            }}
             onGetDirections={handleGetDirections}
           />
         )}
@@ -164,7 +167,7 @@ export default function MapView() {
                     setSelectedBuilding(building)}
                 }}
               >
-                <Popup>{building.name}</Popup>
+                <Popup>{building.name}</Popup> 
               </Marker>
             ))}
 
