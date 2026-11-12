@@ -180,7 +180,8 @@ export default function MapView() {
                   }
                 }}
               >
-                <Popup>{building.name}</Popup> 
+                {/* shows the name on hover, offset so it sits centred above the pin */}
+                <Tooltip direction="top" offset={[-16, -14]}>{building.name}</Tooltip>
               </Marker>
             ))}
 
