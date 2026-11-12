@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ReportPage.css'
 import Footer from './Footer'
-import Header from './Header'
 
 function ReportPage() {
   const [values, setValues] = useState({

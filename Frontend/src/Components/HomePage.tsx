@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import './HomePage.css'
 import { Link } from 'react-router-dom'
 import WeatherOverlay from './WeatherOverlay'
-import { useWeather } from '../Hooks/useWeather'
+import { useWeather } from '../Hooks/useweather'
 import './WeatherOverlay.css'
 import BuildingPanel from './Buildingpanel'
 import Footer from './Footer'
@@ -25,7 +25,6 @@ export default function MapView() {
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [showResults, setShowResults] = useState(false)
   const [destination, setDestination] = useState<[number, number] | null>(null)
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
   const [route, setRoute] = useState<RouteInfo | null>(null)
   const clearDirections = () => {
     setDestination(null)
@@ -185,9 +184,16 @@ export default function MapView() {
               </Marker>
             ))}
 
+            {/* Esri satellite imagery (note: Esri uses {y}/{x} order, not {x}/{y}) */}
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+            {/* transparent labels layer on top so street/place names still show on the satellite view */}
+            <TileLayer
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
             />
           </MapContainer>
           <WeatherOverlay weather={weather} loading={loading} error={error} />
