@@ -26,6 +26,19 @@ export default function MapView() {
   const [showResults, setShowResults] = useState(false)
   const [destination, setDestination] = useState<[number, number] | null>(null)
   const [route, setRoute] = useState<RouteInfo | null>(null)
+
+  // which base map to show; remembered between visits, defaults to satellite
+  const [mapStyle, setMapStyle] = useState<'satellite' | 'map'>(() => {
+    try {
+      return localStorage.getItem('mapStyle') === 'map' ? 'map' : 'satellite'
+    } catch {
+      return 'satellite'
+    }
+  })
+  useEffect(() => {
+    try { localStorage.setItem('mapStyle', mapStyle) } catch { /* storage unavailable */ }
+  }, [mapStyle])
+
   const clearDirections = () => {
     setDestination(null)
     setRoute(null)
@@ -184,19 +197,39 @@ export default function MapView() {
               </Marker>
             ))}
 
-            {/* Esri satellite imagery (note: Esri uses {y}/{x} order, not {x}/{y}) */}
-            <TileLayer
-              attribution='Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-              maxZoom={19}
-            />
-            {/* transparent labels layer on top so street/place names still show on the satellite view */}
-            <TileLayer
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
-              maxZoom={19}
-            />
+            {mapStyle === 'satellite' ? (
+              <>
+                {/* Esri satellite imagery (note: Esri uses {y}/{x} order, not {x}/{y}) */}
+                <TileLayer
+                  key="sat"
+                  attribution='Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                  maxZoom={19}
+                />
+                {/* transparent labels layer on top so street/place names still show on the satellite view */}
+                <TileLayer
+                  key="sat-labels"
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+                  maxZoom={19}
+                />
+              </>
+            ) : (
+              /* standard street map */
+              <TileLayer
+                key="osm"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                maxZoom={19}
+              />
+            )}
           </MapContainer>
           <WeatherOverlay weather={weather} loading={loading} error={error} />
+          <button
+            className="map-style-toggle"
+            onClick={() => setMapStyle(s => (s === 'satellite' ? 'map' : 'satellite'))}
+          >
+            {mapStyle === 'satellite' ? '🗺 Map' : '🛰 Satellite'}
+          </button>
         </div>
       </div>
 
